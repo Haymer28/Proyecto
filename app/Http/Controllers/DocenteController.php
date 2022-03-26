@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\curso;
+use App\Http\Requests\storeDocenteRequest;
+use App\Models\Docente;
 use Illuminate\Http\Request;
-use App\Http\Requests\storeCursosRequest;
 
-class cursoController extends Controller
+class DocenteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,9 @@ class cursoController extends Controller
      */
     public function index()
     {
+        $docentesito = Docente::all();
 
-        //creamos un array para poder manipular información de la tala cursos
-        // a su vez el array actuara como objeto
-        $cursito = curso::all();
-
-        return view('cursos.index', compact('cursito'));
+        return view('docente.indice', compact('docentesito'));
     }
 
     /**
@@ -30,7 +27,7 @@ class cursoController extends Controller
      */
     public function create()
     {
-        return view('cursos.create');
+        return view('docente.create');
     }
 
     /**
@@ -39,31 +36,22 @@ class cursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(storeCursosRequest $request)
+    public function store(storeDocenteRequest $request)
     {
-        //Con el metodo all() veo toda la información
-        //eturn $request->all();
-        //Obtuvimos el dato de lo que el usuario envia por el input
-        //cuyo name es 'nombre'
-        //return $request->input('descripcion');
-        //Creamos una nueva instancia del modelo
-        //$validacionDatos = $request->validate([
-        //    'nombre'=>'required|max:10',
-        //    'img'=>'required|image'
-        //]);
-        $cursito = new curso();
+        $docentesito = new Docente();
         //esto me permitira manipular la tabla
-        $cursito->nombre = $request->input('nombre');
-        $cursito->descripcion = $request->input('descripcion');
+        $docentesito->nombre = $request->input('nombres');
+        $docentesito->apellidos = $request->input('apellidos');
+        $docentesito->titulo = $request->input('titulo');
+        $docentesito->c_asociado = $request->input('c_asociado');
 
         if ($request->hasfile('img')){
-            $cursito-> img = $request->file('img')->store('public');
+            $docentesito-> img = $request->file('img')->store('public');
         }
 
         //con esto ejecutamos comandos para guardar
-        $cursito->save();
+        $docentesito->save();
         return 'Lograste guardar';
-
     }
 
     /**
@@ -74,13 +62,10 @@ class cursoController extends Controller
      */
     public function show($id)
     {
-
-        // creo un array con informacion del registro
-        // del id que viajo en la solicitud usando el metodo find
-        $cursito = curso::find($id);
+        $docentesito = Docente::find($id);
         //Asocio el array a la vista usando el compact
-        //return $cursito;
-        return view('cursos.show', compact('cursito'));
+        //return $docentesito;
+        return view('docente.mostrar', compact('docentesito'));
     }
 
     /**
@@ -91,9 +76,9 @@ class cursoController extends Controller
      */
     public function edit($id)
     {
-        $cursito = curso::find($id);
+        $docentesito = Docente::find($id);
 
-        return view('cursos.edit', compact('cursito'));
+        return view('docente.editar', compact('docentesito'));
     }
 
     /**
@@ -105,14 +90,14 @@ class cursoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cursito = curso::find($id);
+        $docentesito = Docente::find($id);
 
-        $cursito->fill($request->except('img'));
+        $docentesito->fill($request->except('img'));
 
         if ($request->hasfile('img')){
-            $cursito-> img = $request->file('img')->store('public');
+            $docentesito-> img = $request->file('img')->store('public');
         }
-        $cursito->save();
+        $docentesito->save();
         return 'Recurso actualizado';
     }
 

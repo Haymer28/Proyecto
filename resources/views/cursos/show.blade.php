@@ -10,7 +10,7 @@
 <div class="card-body">
     <li class="list-group-item">{{ $cursito->descripcion }}</li>
 </div>
-    <a href="/cursos/{{$cursito->id}}/edit" class="btn btn-dark" style="margin-left:75px">Editar cursos</a>
+    <a href="/cursos/{{$cursito->id}}/edit" class="btn btn-dark" style="margin-left:5px" >Editar cursos</a>
 </div>
 
 @endsection
