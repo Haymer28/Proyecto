@@ -17,7 +17,7 @@
             <div class="col-sm">
                 <div class="card" style="width: 16rem; margin-top:30px;">
                     <center>
-                        <img src="{{ Storage::url($co->nombre) }}" class="card-img-top" alt="..." style="width: 250px; margin-top:30px; height:200px; padding:25px;"  >
+                        <img src="{{ Storage::url($co->img) }}" class="card-img-top" alt="..." style="width: 250px; margin-top:30px; height:200px; padding:25px;"  >
                     </center>
                     <div class="card-body">
 

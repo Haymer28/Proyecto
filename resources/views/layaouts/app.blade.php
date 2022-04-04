@@ -15,6 +15,11 @@
         <a class="nav-link" href="http://127.0.0.1:8000/cursos">Cursos</a>
             </li>
         </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+        <a class="nav-link" href="http://127.0.0.1:8000/estudiante">Estudiantes</a>
+            </li>
+        </ul>
         <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -26,6 +31,7 @@
                 </li>
             </ul>
         </div>
+
     </nav>
     <br>
     <br>

@@ -26,7 +26,7 @@ class EstudianteController extends Controller
      */
     public function create()
     {
-        //
+        return view('estudiante.create');
     }
 
     /**
@@ -37,7 +37,19 @@ class EstudianteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estudiante = new Estudiante();
+        $estudiante->nombre = $request->input('nombre');
+        $estudiante->apellidos = $request->input('apellidos');
+        $estudiante->edad = $request->input('edad');
+        $estudiante->curso = $request->input('curso');
+
+        if ($request->hasfile('img')) {
+            $estudiante->img = $request->file('img')->store('public/estudiante');
+        }
+
+        //con esto ejecutamos comandos para guardar
+        $estudiante->save();
+        return 'Lograste guardar';
     }
 
     /**

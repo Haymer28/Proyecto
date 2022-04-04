@@ -8,8 +8,8 @@
 @section('contenido')
 
 
-<h3>Crear Nuevo Curso</h3>
-<form action="/docente" method="post" enctype="multipart/form-data">
+<h3>Crear un Nuevo Estudiante</h3>
+<form action="/estudiante" method="post" enctype="multipart/form-data">
     @csrf
 
     @if ($errors->any())
@@ -23,23 +23,23 @@
     @endif
 
     <div class="form-group">
-        <label for="nombreDocente">Nombre del docente:</label>
-        <input id="nombreDocente" name="nombres" type="text" class="form-control" aria-describedby="emailHelp">
+        <label for="nombre">Nombre del estudiante:</label>
+        <input id="nombre" name="nombre" type="text" class="form-control" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
-        <label for="apellidosDocente">Apellido:</label>
+        <label for="apellidosDocente">Apellidos del estudiante:</label>
         <input type="text" name="apellidos" class="form-control" id="apellidosDocente" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
-        <label for="Titulo">Titulo</label>
-        <input type="text" name="titulo" class="form-control" id="titulo" aria-describedby="emailHelp">
+        <label for="img">Edad del estudiante:</label>
+        <input type="text" name="edad" class="form-control" id="apellidosDocente" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
-        <label for="c_asociado">Curso asociado:</label>
-        <input type="text" name="c_asociado" class="form-control" id="c_asociado" aria-describedby="emailHelp">
+        <label for="img">Curso del estudiante:</label>
+        <input type="text" name="curso" class="form-control" id="apellidosDocente" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
-        <label for="img"><b>Imagen del docente</b></label>
+        <label for="img">Foto estudiante</label>
         <input name="img" type="file" id="img">
     </div>
     <button type="submit" class="btn btn-danger">Crear</button>
