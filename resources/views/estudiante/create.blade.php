@@ -9,7 +9,7 @@
 
 
 <h3>Crear Nuevo Curso</h3>
-<form action="/cursos" method="post" enctype="multipart/form-data">
+<form action="/docente" method="post" enctype="multipart/form-data">
     @csrf
 
     @if ($errors->any())
@@ -23,20 +23,24 @@
     @endif
 
     <div class="form-group">
-        <label for="nombrecurso">Nombre del curso:</label>
-        <input id="nombrecurso" name="nombre" type="text" class="form-control" aria-describedby="emailHelp">
+        <label for="nombreDocente">Nombre del docente:</label>
+        <input id="nombreDocente" name="nombres" type="text" class="form-control" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
-        <label for="descripcurso">Descripcion del curso:</label>
-        <input type="text" name="descripcion" class="form-control" id="descripcurso" aria-describedby="emailHelp">
+        <label for="apellidosDocente">Apellido:</label>
+        <input type="text" name="apellidos" class="form-control" id="apellidosDocente" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
-        <label for="img"><b>Imagen del Curso</b></label>
+        <label for="Titulo">Titulo</label>
+        <input type="text" name="titulo" class="form-control" id="titulo" aria-describedby="emailHelp">
+    </div>
+    <div class="form-group">
+        <label for="c_asociado">Curso asociado:</label>
+        <input type="text" name="c_asociado" class="form-control" id="c_asociado" aria-describedby="emailHelp">
+    </div>
+    <div class="form-group">
+        <label for="img"><b>Imagen del docente</b></label>
         <input name="img" type="file" id="img">
-    </div>
-    <div class="form-group">
-        <label for="horas"><b>Duración</b></label>
-        <input name="horas" type="text" id="horas">
     </div>
     <button type="submit" class="btn btn-danger">Crear</button>
 </form>

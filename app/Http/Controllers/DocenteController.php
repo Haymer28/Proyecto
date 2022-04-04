@@ -40,13 +40,13 @@ class DocenteController extends Controller
     {
         $docentesito = new Docente();
         //esto me permitira manipular la tabla
-        $docentesito->nombre = $request->input('nombres');
+        $docentesito->nombres = $request->input('nombres');
         $docentesito->apellidos = $request->input('apellidos');
         $docentesito->titulo = $request->input('titulo');
         $docentesito->c_asociado = $request->input('c_asociado');
 
-        if ($request->hasfile('img')){
-            $docentesito-> img = $request->file('img')->store('public');
+        if ($request->hasfile('img')) {
+            $docentesito->img = $request->file('img')->store('public/docente');
         }
 
         //con esto ejecutamos comandos para guardar
@@ -94,11 +94,13 @@ class DocenteController extends Controller
 
         $docentesito->fill($request->except('img'));
 
-        if ($request->hasfile('img')){
-            $docentesito-> img = $request->file('img')->store('public');
+        if ($request->hasfile('img')) {
+            $docentesito->img = $request->file('img')->store('public');
         }
         $docentesito->save();
-        return 'Recurso actualizado';
+        $docentesito = Docente::all();
+
+        return view('docente.indice', compact('docentesito'));
     }
 
     /**
@@ -109,6 +111,16 @@ class DocenteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $docentesito =  Docente::find($id);
+
+        $urlImagenBD = $docentesito->img;
+        //return $urlImagenBD;
+        //$rutaCompleta = public_path().$urlImagenBD;
+        //return $rutaCompleta;
+        $nombreImagen = str_replace('public/', '\storage\\', $urlImagenBD);
+        $rutaCompleta = public_path() . $nombreImagen;
+        unlink($rutaCompleta);
+        $docentesito->delete();
+        return 'Eliminado';
     }
 }

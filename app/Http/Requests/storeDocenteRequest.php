@@ -24,9 +24,8 @@ class storeDocenteRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=>'required|max:10',
-            'apellidos'=>'require|max10',
-            'f_docente'=>'required|image'
+            'nombres'=>'required|max:20',
+            'apellidos'=>'required|max:20',
 
         ];
     }

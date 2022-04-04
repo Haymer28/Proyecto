@@ -55,15 +55,15 @@ class cursoController extends Controller
         //esto me permitira manipular la tabla
         $cursito->nombre = $request->input('nombre');
         $cursito->descripcion = $request->input('descripcion');
+        $cursito->horas = $request->input('horas');
 
-        if ($request->hasfile('img')){
-            $cursito-> img = $request->file('img')->store('public');
+        if ($request->hasfile('img')) {
+            $cursito->img = $request->file('img')->store('public/cursos');
         }
 
         //con esto ejecutamos comandos para guardar
         $cursito->save();
         return 'Lograste guardar';
-
     }
 
     /**
@@ -109,11 +109,13 @@ class cursoController extends Controller
 
         $cursito->fill($request->except('img'));
 
-        if ($request->hasfile('img')){
-            $cursito-> img = $request->file('img')->store('public');
+        if ($request->hasfile('img')) {
+            $cursito->img = $request->file('img')->store('public');
         }
         $cursito->save();
-        return 'Recurso actualizado';
+        $cursito = curso::all();
+
+        return view('cursos.index', compact('cursito'));
     }
 
     /**
@@ -124,6 +126,18 @@ class cursoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cursito =  curso::find($id);
+
+        $urlImagenBD = $cursito->img;
+        //return $urlImagenBD;
+        //$rutaCompleta = public_path().$urlImagenBD;
+        //return $rutaCompleta;
+
+        $nombreImagen = str_replace('public/cursos', '\storage\cursos\\', $urlImagenBD);
+        $rutaCompleta = public_path() . $nombreImagen;
+
+        unlink($rutaCompleta);
+        $cursito->delete();
+        return 'Eliminado';
     }
 }
